@@ -1,0 +1,58 @@
+<DockPanel ux:Class="MainPage" Color="#0000000D" >
+	<Router ux:Dependency="router" />
+	<JavaScript File="MainPage.js" />
+	<iOS.StatusBarConfig Style="Light" />
+	<Android.StatusBarConfig Color="#052845" IsVisible="false" />
+	<BottomBarBackground Dock="Bottom" />
+	 <DockPanel>
+	<NativeViewHost>
+		<MapView Latitude="59.911567" Longitude="10.741030" Zoom="10">
+			<MapMarker Latitude="59.911567" Longitude="10.741030" Label="Fuse HQ"/>
+		</MapView>
+
+		<Panel Alignment="Bottom" Margin="0,0,0,0" ux:Name="bottomToolbar" ZOffset="6"  Height="50">
+            <Grid Columns="1*,64" Background="#fff">
+                <TextInput PlaceholderText="Please enter your text" PlaceholderColor="#8f8f8fdd" Font="SFProTextRegular" FontSize="16" Value="{userInput}" Margin="10,0,0,0"/>
+                <Panel Alignment="CenterRight" Color="#329af0">
+                    <Image File="../Assets/Images/send.png">
+                    	<Clicked>
+                            <Callback Handler="{onSendBtnClick}" />
+                        </Clicked>
+                    </Image>
+                </Panel>
+            </Grid>
+        </Panel>
+
+        <Panel ZOffset="4" Width="100%" Margin="0,44,0,0" ux:Name="chatCanvas" Alignment="Bottom" Y="0" Visibility="{chatVisibility}" Height="100%" Placed="{chatPlaced}" ClipToBounds="true">
+                <Button Padding="{topPadding},{topPadding},{bottomPadding},{bottomPadding}" >
+                <GraphicsView>
+                  <ChatCard OnExpand="{onChatExpand}" OnCollapse="{onChatCollapse}" />
+                  <StateGroup ux:Name="chatCardStates" Active="Expanded">
+                            <State ux:Name="Expanded">
+                                <Change chatCanvas.Margin="0,44,0,0" Duration="0.3" />
+                            </State>
+                            <State ux:Name="Half">
+                                <Change chatCanvas.Margin="0, {chatHalfMargin}, 0, 0" Duration="0.3"/>
+                            </State>
+                            <State ux:Name="Collapsed">
+                                <Change chatCanvas.Margin="{0, chatCollapseMargin, 0, 0}" Duration="0.3"/>
+                            </State>
+                        </StateGroup>
+                </GraphicsView>
+                </Button>
+            </Panel>
+
+        <Panel ZOffset="5" Width="100%" Margin="0,44,0,0" Height="100%" ux:Name="cardsPanel" Alignment="Bottom" Y="0" Visibility="{cardManagerVisibility}" >
+                <Button Padding="{topPadding},{topPadding},{bottomPadding},{bottomPadding}">
+                <GraphicsView >
+                    <Each Items="{cards}" MatchKey="name">
+                        <!-- real cards -->
+                        <LocationCard ux:Template="LocationCard" Y="{yOffset}" ZOffset="{zOffset}" Height="100%" Args="{args}" OnCollapse="{yOffset}" />
+                    </Each>
+                </GraphicsView>
+               </Button>
+            </Panel>
+	</NativeViewHost>
+</DockPanel>
+
+</DockPanel>

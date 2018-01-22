@@ -1,0 +1,77 @@
+<Panel ux:Class="BotChat" BotId="staging-bot">
+    <string ux:Property="BotId" />
+    <BottomFrameBackground Dock="Bottom" />
+
+     <LayoutAnimation>      
+        <Move Vector="1" RelativeTo="PositionChange" Duration="0.3"/>     
+        <Resize Vector="1" RelativeTo="SizeChange" Duration="0.3"/>       
+    </LayoutAnimation>
+
+    <JavaScript>
+        var Observable = require('FuseJS/Observable');
+        var messages = Observable();
+        // Scroll to bottom when new messages come
+        messages.onValueChanged(module, function () {
+            scrollToBottom();
+        });
+
+        function makeMessage(text, uiType) {
+            uiType = uiType || 'UserMessage';
+            if (text === undefined) {
+                return;
+            }
+            var msg = {
+                uiType: uiType,
+                type: 'message',
+                text: text
+            };
+            return msg;
+         };
+
+        function sendMessage() {
+            messages.add(makeMessage(getCurrentDateStr(), 'TimeMessage'));
+            messages.add(makeMessage("Hello there", 'BotMessage'));
+        };
+
+        sendMessage();
+
+        function onActionMessageClick(event) {
+            var actionObj = event.data;
+            console.log('button click');
+        }
+
+        function scrollToBottom() {
+            setTimeout(function () {
+                // 0 - for x, 1 for y. 0 start, 1 end. 0.5 would be half way
+                scrollView.gotoRelative(0, 1);
+            }, 100);
+        }
+
+        function getCurrentDateStr() {
+            var currentDate = new Date();
+            var dateParts = currentDate.toString().split(/\s/);
+            console.log(dateParts);
+            var monthName = dateParts[1];
+            var day = parseInt(dateParts[2], 10);
+            var dateString = monthName + ' ' + day;
+            return dateString;
+        }
+
+        module.exports = {
+            messages: messages,
+            onActionMessageClick: onActionMessageClick,
+        }
+    </JavaScript>
+
+    <!-- <Rectangle Layer="Underlay" Color="{Theme.TopToolbarBg}" /> -->
+    <Rectangle Layer="Background" Color="#fff" CornerRadius="15,15,0,0" />
+    <ScrollView LayoutMode="PreserveScrollPosition" ux:Name="scrollView" AllowedScrollDirections="Vertical">
+        <StackPanel Alignment="Bottom">
+            <!-- <Rectangle Layer="Background" Color="#f00" /> -->
+            <Each Items="{messages}" MatchKey="uiType">
+                <TimeMessage ux:Template="TimeMessage" Text="{text}" />
+                <BotTextMessage ux:Template="BotMessage" Text="{text}" />
+            </Each>
+        </StackPanel>
+    </ScrollView>
+</Panel>

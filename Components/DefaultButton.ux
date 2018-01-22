@@ -1,0 +1,4 @@
+<Rectangle ux:Class="DefaultButton" Width="120" Height="44" Color="#03142216" CornerRadius="8" HitTestMode="LocalBoundsAndChildren" >
+	<string ux:Property="Text"/>
+	<Text FontSize="17" Value="{ReadProperty Text}" Color="{Theme.primaryColor}" Alignment="Center" TextAlignment= "Center" />
+</Rectangle>

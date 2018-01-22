@@ -1,0 +1,8 @@
+<App>
+	<Font File="Assets/Fonts/SF-Pro-Text-Regular.otf" ux:Global="SFProTextRegular" />
+	
+	<Router ux:Name="router" />
+	<Navigator DefaultPath="main">
+		<MainPage ux:Template="main" router="router" />
+	</Navigator>
+</App>

@@ -1,0 +1,8 @@
+<WrapPanel ux:Class="ChatMessage">
+	<string ux:Property="Text" />
+	<Panel Padding="16,11" >
+		<Text Value="{ReadProperty Text}" Color="#000" TextWrapping="Wrap" Font="SFProTextRegular" />
+		<Rectangle Layer="Background" Color="#03142216" CornerRadius="5">
+		</Rectangle>
+	</Panel>
+</WrapPanel>

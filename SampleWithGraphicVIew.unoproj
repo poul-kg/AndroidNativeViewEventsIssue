@@ -1,0 +1,22 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Fuse",
+    "FuseJS",
+    "Fuse.Maps",
+    "Fuse.GeoLocation"
+  ],
+  "Includes": [
+    "*",
+    "**.js:Bundle"
+  ],
+  "Mobile": {
+    "Orientations": "Portrait",
+  },
+    "Android": {
+    "Geo": {
+      "ApiKey": "AIzaSyAOlbxG6e-qD-v-POTJW__AdXOiaQUflA8"
+    }
+  },
+}
+

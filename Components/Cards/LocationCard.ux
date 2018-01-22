@@ -1,0 +1,30 @@
+<CardPage ux:Class="LocationCard" Margin="0,0,0,50">
+    <object ux:Property="Args" />
+
+    <JavaScript File="LocationCard.js" />
+    <!-- <Rectangle Layer="Background" Color="#cde" /> -->
+    <CardHandle Dock="Top" ParentCardName="LocationCard" />
+
+    <ScrollView>
+        <StackPanel Color="#fff">
+            <Panel Height="175" >
+                <Rectangle CornerRadius="15,15,0,0">
+                    <!-- Location Image -->
+                    <ImageFill Url="http://1.bp.blogspot.com/-Ct5wIVVwzRA/T8n4802nIjI/AAAAAAAAAJA/unTjvIfCqGk/s1600/macdonald.jpg" StretchMode="UniformToFill" />
+                </Rectangle>
+                <!-- Location Logo -->
+                <Image Height="75" Width="75" Alignment="BottomLeft" Layer="Overlay" Margin="24,0" Anchor="0%,50%" Url="https://logos-download.com/wp-content/uploads/2016/03/McDonalds_logo_small.png"/>
+            </Panel>
+
+            <Text FontSize="28" Value="McDonalds" Color="#031422" Alignment="Left" Margin="24,50,0,3"/>
+            <Text FontSize="14" Value="2401 15th St, Denver, CO 80202" Color="#031422" Alignment="Left" Margin="24,6,17,0" TextWrapping="Wrap" />
+            <Text FontSize="15" Value="Fast-food chain offering Mexican fare, including
+design-your-own burritos, tacos and bowls." Color="#03142299" Alignment="Left" Margin="24,10,17,17" TextWrapping="Wrap" />
+
+            <StackPanel Orientation="Horizontal" Margin="24,0,24,10" ItemSpacing="10">
+                <DefaultButton Text="Menu" Clicked="{goToMenu}" />
+                <DefaultButton Text="Map it" Clicked="{navigate}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollView>
+</CardPage>
